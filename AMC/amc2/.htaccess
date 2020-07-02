@@ -1,0 +1,26 @@
+<IfModule !mod_authz_core.c>
+  Order deny,allow
+allow from all
+#eduardo
+#allow from 10.178.41.193
+#nisi
+#allow from  10.178.41.46
+#carlos
+#Allow from 10.178.41.161
+#fernando
+#allow from 10.178.41.163
+#mariana
+#allow from 10.178.41.58
+</IfModule>
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+
+<FilesMatch "\.(ttf|otf|eot|woff|woff2|png)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
+
+Options -Indexes
+

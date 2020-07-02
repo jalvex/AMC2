@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="pt" dir="ltr" class="uk-height-1-1">
+
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /> <!--Introduza esta linha no teu html-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AMC - Login</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed"
+	href="images/apple-touch-icon.png">
+<link rel="stylesheet" href="resource/uikit/css/uikit.docs.min.css">
+<script src="resource/jquery.js"></script>
+<script src="resource/uikit/js/uikit.min.js"></script>
+<script src="resource/uikit/js/uikit-icons.js"></script>
+
+<style type="text/css">
+div#alinha_logo {
+	width: 200px;
+	height: 10%;
+	line-height: 120px;
+}
+
+div#alinha_versao {
+	font: 12px Arial, Sans-serif;
+	width: 200px;
+	height: 60px; <!--
+	border: 1px solid #c30; -->
+	background: #ffe;
+	line-height: 120px;
+	vertical-align: bottom;
+	position: relative;
+}
+</style>
+
+<!-- INICIO envia os dados do formulario de login -->
+<script type="text/javascript">
+	$(function() {
+		$('#login').submit(function(event) {
+			event.preventDefault();
+			var formDados = new FormData($(this)[0]);
+			$.ajax({
+				url : 'proc/login.php', //verificação dos dados de login
+				type : 'POST',
+				data : formDados,
+				cache : false,
+				contentType : false,
+				processData : false,
+				beforeSend : function() { //Aqui adiciona ação a ser executada antes de exibir o retorno 
+					$("#divmsg").html("<br />");
+				},
+				success : function(data) {
+					$("#divmsg").html("" + data + ""); //Exibe o resultado da verificaÃ§ do login
+					//alert(data);
+				},
+				dataType : 'html'
+			});
+			return false;
+		});
+	});
+</script>
+<!-- FIM envia os dados do formulario  -->
+</head>
+
+<body background="images/fundo.png" class="uk-height-1-1">
+	<div id="header"
+		style="width: auto; height: 0px; margin-top: 0px; margin-left: 20px;"background-image:url(images/fundo.png);  background-repeat:no-repeat; >
+		<img style="width: auto; height: 25px; margin-top: 20px;"
+			src="images/logo_tim_fundo_escuro.png" />
+	</div>
+	<div class="uk-vertical-align uk-text-center uk-height-1-1">
+		<div class="uk-vertical-align-middle" style="width: 250px;">
+
+			<form class="uk-panel uk-panel-box uk-form name=" login" id="login"
+				method="POST" action="" enctype="multipart/form-data"">
+				<div class="uk-margin">
+					<div class="uk-inline">
+						<img data-src="images/logo_amc_branco.png" width="300"
+							height="120" alt="" uk-img> <br> <br> <span
+							class="uk-form-icon" uk-icon="icon: user"></span> <input
+							glass="uk-input" type="text" name="usu" id="usu"
+							placeholder="UsuÃ¡o" required>
+					</div>
+				</div>
+				<div class="uk-margin">
+					<div class="uk-inline">
+						<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+						<input class="uk-input" type="password" name="senha" id="senha"
+							placeholder="Senha" required>
+<a href="" class="uk-form-password-toggle" data-uk-form-password>...</a>
+					</div>
+				</div>
+				<div id="divmsg">
+					<br />
+				</div>
+				<div class="uk-form-row">
+					<button
+						class="uk-width-1-1 uk-button uk-button-primary uk-button-large"
+						type="submit">Login</button>
+				</div>
+
+			</form>
+			<div class="uk-vertical-align-bottom"
+				style="width: 99%; top: 19%; position: relative; -index: 1;">
+				<font face="arial" size="1px" color="#ffffff">Tim Brasil -
+					Change & Assurance TI</font>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
